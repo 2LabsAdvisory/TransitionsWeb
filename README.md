@@ -18,7 +18,7 @@ sitemap (IA), wireframes, content guide and brand guide.
 - styles.css .............. Shared stylesheet (design tokens, components, responsive @media)
 - script.js ............... Mobile menu, donation pickers, unwired-form notices
 - assets/logo.png, emblem.png ... Logo + emblem (emblem also the favicon)
-- assets/photo1..7.jpg .... Photography
+- assets/*.jpg ............ Photography (see below)
 
 ## How to view
 Open index.html in any browser, or serve the folder:
@@ -58,24 +58,47 @@ Donation card details are deliberately *not* collected by this site. `donate.htm
 `.cardslot` placeholder where the CanadaHelps embed goes; keep payment fields inside their
 iframe so card data never touches this codebase.
 
-## Before you go live — replace the remaining placeholders
-- Statistics (e.g. "300+ families", "92¢ of every $", the Our Impact numbers)
-- Per-gift impact lines on Donate ("$50 funds a week of sessions") — confirm against program costs
-- Registered charity number (#XXXXX) — appears in the footer of all 10 pages and on Donate
-- Real family stories + the annual report PDF (and the program-allocation chart).
-  "Request the annual report" currently points at the contact page.
-- Wire the Donate form to your CanadaHelps embed; wire the contact/inquiry/careers/search
-  forms to a handler, then drop their `data-unwired` attributes
-- Write the FSCD/PDD/AISH guides and the resource library. The three funding cards on
-  resources.html say "Read the … guide →" but have nowhere to link yet, and the four
-  library cards are placeholder "Resource title" entries.
-- Accessibility and Privacy pages. These are currently plain text in the footer rather than
-  links, because linking to a page that does not exist is worse than not linking.
-- The header "Sign In" link is a stub (`href="#"`) for a future portal — wire or remove it.
-- Photography: the images in assets/ are low resolution (~398×297) and read as generic
-  stock rather than Transitions programs — a subway car, a park chess game, a stack of
-  picture books. Replace them with real, high-resolution photos of your own programs, with
-  consent, and update each `alt` to describe the new image.
+## Content sourced from the live site
+
+Facts, links and photography were taken from the live transitions-ab.org (and, for the
+charity number, the CRA registration) rather than invented:
+
+- Registered charity **119162048RR0001**, legal name *Transitions Rehabilitation
+  Association of St. Albert and District* — in every footer and in the homepage JSON-LD.
+- Donate goes to the real CanadaHelps page, **canadahelps.org/dn/14896**. The amount tiles
+  ($30/$75/$150/$400) mirror the tiers shown there, so the amount does not change at
+  checkout. No card fields exist on this site.
+- Amazon Wish List, Facebook, Instagram, LinkedIn and the membership login all point at the
+  organisation's real URLs.
+- FSCD/PDD/AISH cards link to the matching alberta.ca pages; the FSCD intake number
+  (780) 427-4354 option 3 is included.
+- Programme eligibility and service lists (birth–6 with delays in two or more areas; FSCD
+  respite in three-hour minimum shifts; 24/7 or 5–40 hrs of adult support) match the live
+  programme pages. Careers uses the real posting titles.
+
+Photography now comes from the organisation's own media library, resized and re-encoded
+for the web (~980 KB total, down from unusable ~398×297 crops). The strongest image —
+two people laughing together, on the homepage hero — is genuine programme photography.
+
+## Before you go live — remaining placeholders
+- **Our Impact needs real numbers.** The figures that were on that page ("312 people",
+  "1,200+ respite hours", "92¢ of every $") were invented and have been replaced with
+  verifiable facts. Put the audited annual-report figures back in, plus the programme
+  allocation chart and the report PDF itself — "Request the annual report" currently
+  points at the contact page.
+- **Per-gift impact lines on Donate** were removed for the same reason. Restore them as
+  "$75 funds …" once programme costs are confirmed.
+- Real family stories for the homepage and Our Impact.
+- Wire the contact/inquiry/careers/search forms to a handler, then drop their
+  `data-unwired` attributes.
+- Write the FSCD/PDD/AISH guides and the resource library — resources.html currently says
+  the library is under construction, matching the live site.
+- Accessibility and Privacy pages. These are plain text in the footer rather than links,
+  because linking to a page that does not exist is worse than not linking.
+- Check the Early Childhood age range. This site and the live programme page say birth to
+  6; the CanadaHelps description says "up to 3½ years old". One of them is wrong.
 - Set the real domain. Canonical tags, `og:url`, sitemap.xml and robots.txt all assume
   `https://www.transitions-ab.org/`; find and replace if the site lands elsewhere.
 - Fonts load from Google Fonts (Poppins); self-host for a fully offline build.
+- Confirm photo consent. The homepage hero shows identifiable people; it is republished
+  from the organisation's own site, but check the release covers this use.
