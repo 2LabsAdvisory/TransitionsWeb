@@ -163,7 +163,10 @@ ul.check li:before{content:"✓";position:absolute;left:0;top:7px;width:18px;hei
    Scrolling stays enabled as a safety valve so validation messages are never trapped
    out of reach. */
 .two-col iframe{display:block}
-@media (max-width:480px){.two-col iframe{height:830px}}
+/* Donate page only. The Family Services inquiry embed is shorter (700px at 416px wide,
+   717px at 323px), so 720 already clears it at every width and it must not be stretched
+   to 830 or it gains a band of dead space. */
+@media (max-width:480px){[data-page="give"] .two-col iframe{height:830px}}
 
 /* Notice rendered when an unwired form is submitted */
 .formnote{margin-top:12px;padding:12px 14px;border-radius:10px;background:var(--sun-t);border:1px solid #e8d79a;
