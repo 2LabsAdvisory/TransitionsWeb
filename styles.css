@@ -32,7 +32,9 @@ p{margin:0}
 .sh{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   border-bottom:1px solid var(--line);
   display:flex;align-items:center;gap:18px;padding:12px 26px}
-.sh .logo img{height:38px}
+/* Size by height only. The <img> carries width/height attributes for CLS, and without
+   width:auto that attribute width wins and stretches the mark. */
+.sh .logo img{height:38px;width:auto;max-width:none;object-fit:contain}
 .sh nav{display:flex;gap:20px;flex:1;font-size:14.5px;font-weight:500;color:var(--slate)}
 .sh nav a:hover{color:var(--blue)}
 .sh .signin{font-size:13.5px;color:var(--blue2);font-weight:500}
@@ -145,20 +147,10 @@ ul.check li:before{content:"✓";position:absolute;left:0;top:7px;width:18px;hei
 .step .n{counter-increment:s;flex:0 0 30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
 .step .n:before{content:counter(s)}
 .step p{font-size:14.5px;color:var(--slate);padding-top:4px}
-.amt{display:flex;gap:8px;flex-wrap:wrap}
-.amt .a{border:1.5px solid var(--mist);border-radius:10px;padding:12px 16px;font:inherit;font-weight:700;color:var(--slate);
-  background:#fff;cursor:pointer}
-.amt .a.on{background:var(--blue);color:#fff;border-color:var(--blue)}
-.toggle2{display:inline-flex;border:1.5px solid var(--blue);border-radius:10px;overflow:hidden;font-weight:600;font-size:13.5px;margin-bottom:14px}
-.toggle2 button{padding:9px 18px;color:var(--blue);background:#fff;border:0;font:inherit;font-weight:600;cursor:pointer}
-.toggle2 button.on{background:var(--blue);color:#fff}
 /* Notice rendered when an unwired form is submitted */
 .formnote{margin-top:12px;padding:12px 14px;border-radius:10px;background:var(--sun-t);border:1px solid #e8d79a;
   color:#6b4a08;font-size:13.5px;line-height:1.5}
 .formnote:empty{display:none}
-/* Stands in for the CanadaHelps embed until it is wired up */
-.cardslot{border:1.5px dashed var(--mist);border-radius:10px;padding:16px;background:var(--cloud);color:var(--slate);
-  font-size:13.5px;line-height:1.55;margin-bottom:14px}
 
 /* footer */
 .ft{background:#14181F;color:#aeb7c4}

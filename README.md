@@ -65,9 +65,11 @@ charity number, the CRA registration) rather than invented:
 
 - Registered charity **119162048RR0001**, legal name *Transitions Rehabilitation
   Association of St. Albert and District* — in every footer and in the homepage JSON-LD.
-- Donate goes to the real CanadaHelps page, **canadahelps.org/dn/14896**. The amount tiles
-  ($30/$75/$150/$400) mirror the tiers shown there, so the amount does not change at
-  checkout. No card fields exist on this site.
+- Donate embeds the Donors by 2Labs form (`donors.2labs.ca/f/donation-form`), which fronts
+  CanadaHelps. Card details never touch this site. **The embed currently renders branded
+  "2Labs Advisory" with charity number `12345 6789 RR0001` — it needs to be pointed at the
+  Transitions tenant before launch.** The organisation's own CanadaHelps page is
+  canadahelps.org/dn/14896 if a direct link is ever needed instead.
 - Amazon Wish List, Facebook, Instagram, LinkedIn and the membership login all point at the
   organisation's real URLs.
 - FSCD/PDD/AISH cards link to the matching alberta.ca pages; the FSCD intake number
@@ -81,6 +83,9 @@ for the web (~980 KB total, down from unusable ~398×297 crops). The strongest i
 two people laughing together, on the homepage hero — is genuine programme photography.
 
 ## Before you go live — remaining placeholders
+- **Point the donation embed at the Transitions tenant.** As deployed it shows "2Labs
+  Advisory / Support our work" and a placeholder charity number, so donors on the
+  Transitions donate page currently see the wrong organisation.
 - **Our Impact needs real numbers.** The figures that were on that page ("312 people",
   "1,200+ respite hours", "92¢ of every $") were invented and have been replaced with
   verifiable facts. Put the audited annual-report figures back in, plus the programme

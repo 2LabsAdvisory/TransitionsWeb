@@ -47,24 +47,14 @@
       <p class="sub" style="margin-left:auto;margin-right:auto">Every dollar you give stays local — funding the programs that help children, youth and adults with developmental disabilities live, work and play in St. Albert and area.</p>
     </div></div>
     <div class="sec"><div class="wrap two-col">
-      <div class="formcard">
-        <div class="eyebrow" style="margin-bottom:10px">Make a donation</div>
-        <div class="toggle2" role="group" aria-label="Giving frequency">
-          <button type="button" class="on" data-frequency="monthly" aria-pressed="true">Monthly</button>
-          <button type="button" data-frequency="once" aria-pressed="false">One-time</button>
-        </div>
-        <!-- amounts mirror the tiers on the live CanadaHelps page (canadahelps.org/dn/14896)
-             so donors see the same options here and at checkout -->
-        <div class="amt" role="group" aria-label="Donation amount" style="margin-bottom:8px">
-          <button type="button" class="a" data-amount="30" aria-pressed="false">$30</button>
-          <button type="button" class="a on" data-amount="75" aria-pressed="true">$75</button>
-          <button type="button" class="a" data-amount="150" aria-pressed="false">$150</button>
-          <button type="button" class="a" data-amount="400" aria-pressed="false">$400</button>
-          <button type="button" class="a" aria-pressed="false">Other</button>
-        </div>
-        <p style="font-size:13.5px;color:var(--slate);line-height:1.55;margin:14px 0 4px">Donations are handled by CanadaHelps, so your card details never touch this site. You will confirm the amount and frequency on their secure page.</p>
-        <a class="btn primary block" id="give-cta" href="https://www.canadahelps.org/dn/14896" style="font-size:16px;padding:14px;margin-top:10px">Give $75 / month</a>
-        <p style="font-size:12px;color:var(--grey);margin-top:10px">CanadaHelps emails your tax receipt as soon as your gift is processed. Prefer to give by phone? Call (780) 458-7371.</p>
+      <div>
+        <!-- Donation form embed (CanadaHelps via donors.2labs.ca). Width 624 matches the
+             form this replaced; max-width:100% lets it shrink when the layout stacks. -->
+        <iframe src="https://donors.2labs.ca/f/donation-form"
+                width="624" height="720"
+                style="border:0;max-width:100%"
+                title="Donation form" loading="lazy"></iframe>
+        <p style="font-size:12px;color:var(--grey);margin-top:10px">Prefer to give by phone? Call (780) 458-7371 during office hours.</p>
       </div>
       <div>
         <div class="eyebrow">Where your gift goes</div>
