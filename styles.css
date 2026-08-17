@@ -33,8 +33,11 @@ p{margin:0}
   border-bottom:1px solid var(--line);
   display:flex;align-items:center;gap:18px;padding:12px 26px}
 /* Size by height only. The <img> carries width/height attributes for CLS, and without
-   width:auto that attribute width wins and stretches the mark. */
-.sh .logo img{height:38px;width:auto;max-width:none;object-fit:contain}
+   width:auto that attribute width wins and stretches the mark. max-width stays at 100%
+   (not none) so the mark can shrink inside the flex header on small phones instead of
+   pushing the page wider than the viewport; object-fit:contain keeps it in proportion
+   when it does shrink. */
+.sh .logo img{height:38px;width:auto;max-width:100%;object-fit:contain}
 .sh nav{display:flex;gap:20px;flex:1;font-size:14.5px;font-weight:500;color:var(--slate)}
 .sh nav a:hover{color:var(--blue)}
 .sh .signin{font-size:13.5px;color:var(--blue2);font-weight:500}
@@ -148,18 +151,19 @@ ul.check li:before{content:"✓";position:absolute;left:0;top:7px;width:18px;hei
 .step .n:before{content:counter(s)}
 .step p{font-size:14.5px;color:var(--slate);padding-top:4px}
 /* Donation embed. The iframe is cross-origin and the form sends no resize message, so
-   its height must be declared here or the form gets an inner scrollbar. Measured content
-   height: 715px at 624px wide, 788px at 323px, 807px at 268px (labels and amount buttons
-   rewrap as it narrows). The heights below sit just above those, so the form's own
-   top-aligned content starts flush and leaves no dead space beneath it.
+   any height has to be declared rather than derived. The embed's own height=720 fits the
+   form while the frame is about 410px wide or more (measured content: 715px). Below that
+   the labels and amount buttons rewrap and it grows — 755px at 400px wide, 788px at
+   323px, 807px at 268px — so a stacked phone layout needs more or the form scrolls
+   inside the frame and clips the Donate button.
 
    These numbers track a form we do not control — it already changed once during this
    work. The durable fix is for donors.2labs.ca to post its height to the parent
    (postMessage) so the frame can auto-size; until then, re-measure if the form changes.
    Scrolling stays enabled as a safety valve so validation messages are never trapped
    out of reach. */
-.donate-embed{display:block;width:624px;max-width:100%;height:740px;border:0}
-@media (max-width:460px){.donate-embed{height:830px}}
+.two-col iframe{display:block}
+@media (max-width:480px){.two-col iframe{height:830px}}
 
 /* Notice rendered when an unwired form is submitted */
 .formnote{margin-top:12px;padding:12px 14px;border-radius:10px;background:var(--sun-t);border:1px solid #e8d79a;
