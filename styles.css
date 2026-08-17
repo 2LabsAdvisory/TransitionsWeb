@@ -147,6 +147,20 @@ ul.check li:before{content:"✓";position:absolute;left:0;top:7px;width:18px;hei
 .step .n{counter-increment:s;flex:0 0 30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
 .step .n:before{content:counter(s)}
 .step p{font-size:14.5px;color:var(--slate);padding-top:4px}
+/* Donation embed. The iframe is cross-origin and the form sends no resize message, so
+   its height must be declared here or the form gets an inner scrollbar. Measured content
+   height: 715px at 624px wide, 788px at 323px, 807px at 268px (labels and amount buttons
+   rewrap as it narrows). The heights below sit just above those, so the form's own
+   top-aligned content starts flush and leaves no dead space beneath it.
+
+   These numbers track a form we do not control — it already changed once during this
+   work. The durable fix is for donors.2labs.ca to post its height to the parent
+   (postMessage) so the frame can auto-size; until then, re-measure if the form changes.
+   Scrolling stays enabled as a safety valve so validation messages are never trapped
+   out of reach. */
+.donate-embed{display:block;width:624px;max-width:100%;height:740px;border:0}
+@media (max-width:460px){.donate-embed{height:830px}}
+
 /* Notice rendered when an unwired form is submitted */
 .formnote{margin-top:12px;padding:12px 14px;border-radius:10px;background:var(--sun-t);border:1px solid #e8d79a;
   color:#6b4a08;font-size:13.5px;line-height:1.5}
