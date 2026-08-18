@@ -150,23 +150,20 @@ ul.check li:before{content:"✓";position:absolute;left:0;top:7px;width:18px;hei
 .step .n{counter-increment:s;flex:0 0 30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
 .step .n:before{content:counter(s)}
 .step p{font-size:14.5px;color:var(--slate);padding-top:4px}
-/* Donation embed. The iframe is cross-origin and the form sends no resize message, so
-   any height has to be declared rather than derived. The embed's own height=720 fits the
-   form while the frame is about 410px wide or more (measured content: 715px). Below that
-   the labels and amount buttons rewrap and it grows — 755px at 400px wide, 788px at
-   323px, 807px at 268px — so a stacked phone layout needs more or the form scrolls
-   inside the frame and clips the Donate button.
+/* Embedded forms (donors.2labs.ca). The frames are cross-origin and send no resize
+   message, so nothing here can derive their height — it has to be measured. Both embeds
+   ship height=720, which currently clears their content at every width they render at:
 
-   These numbers track a form we do not control — it already changed once during this
-   work. The durable fix is for donors.2labs.ca to post its height to the parent
-   (postMessage) so the frame can auto-size; until then, re-measure if the form changes.
-   Scrolling stays enabled as a safety valve so validation messages are never trapped
-   out of reach. */
+     donation form  /app/f/…  658px at 624 wide, 711px at 323 and 268
+     inquiry form   /f/…      700px at 416 wide, 717px at 323 and 268
+
+   No height override is needed as a result. An earlier build of the donation form was
+   taller (up to 807px) and needed one; if a form grows past 720 again it will scroll
+   inside its frame and clip the submit button, so re-measure whenever an embed changes.
+   The durable fix is for donors.2labs.ca to post its height to the parent (postMessage)
+   so the frame can auto-size. Scrolling stays enabled as a safety valve so validation
+   messages are never trapped out of reach. */
 .two-col iframe{display:block}
-/* Donate page only. The Family Services inquiry embed is shorter (700px at 416px wide,
-   717px at 323px), so 720 already clears it at every width and it must not be stretched
-   to 830 or it gains a band of dead space. */
-@media (max-width:480px){[data-page="give"] .two-col iframe{height:830px}}
 
 /* Notice rendered when an unwired form is submitted */
 .formnote{margin-top:12px;padding:12px 14px;border-radius:10px;background:var(--sun-t);border:1px solid #e8d79a;
