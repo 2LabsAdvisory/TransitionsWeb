@@ -151,19 +151,21 @@ ul.check li:before{content:"✓";position:absolute;left:0;top:7px;width:18px;hei
 .step .n:before{content:counter(s)}
 .step p{font-size:14.5px;color:var(--slate);padding-top:4px}
 /* Embedded forms (donors.2labs.ca). The frames are cross-origin and send no resize
-   message, so nothing here can derive their height — it has to be measured. Both embeds
-   ship height=720, which currently clears their content at every width they render at:
+   message, so nothing here can derive their height — it has to be measured per form.
 
-     donation form  /app/f/…  658px at 624 wide, 711px at 323 and 268
-     inquiry form   /f/…      700px at 416 wide, 717px at 323 and 268
+     donate  /app/f/f_f4f2…  donation form   658px at 624 wide, 711px at 323 and 268
+     service /app/f/f_37b3…  manage-giving   384px at 416 wide, 419px at 323, 467px at 268
 
-   No height override is needed as a result. An earlier build of the donation form was
-   taller (up to 807px) and needed one; if a form grows past 720 again it will scroll
-   inside its frame and clip the submit button, so re-measure whenever an embed changes.
-   The durable fix is for donors.2labs.ca to post its height to the parent (postMessage)
-   so the frame can auto-size. Scrolling stays enabled as a safety valve so validation
-   messages are never trapped out of reach. */
+   The donate embed's own height=720 clears its form, so it needs no override. The
+   Family Services embed also ships height=720 but its form is roughly half that, so it
+   is sized down here — otherwise the frame trails ~300px of blank page under the form.
+   If a form grows past the height set for it, it scrolls inside its frame and clips the
+   submit button, so re-measure whenever an embed changes. The durable fix is for
+   donors.2labs.ca to post its height to the parent (postMessage) so frames can
+   auto-size. Scrolling stays enabled as a safety valve. */
 .two-col iframe{display:block}
+[data-page="service"] .two-col iframe{height:440px}
+@media (max-width:880px){[data-page="service"] .two-col iframe{height:480px}}
 
 /* Notice rendered when an unwired form is submitted */
 .formnote{margin-top:12px;padding:12px 14px;border-radius:10px;background:var(--sun-t);border:1px solid #e8d79a;
