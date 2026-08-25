@@ -151,19 +151,23 @@ ul.check li:before{content:"✓";position:absolute;left:0;top:7px;width:18px;hei
 .step .n:before{content:counter(s)}
 .step p{font-size:14.5px;color:var(--slate);padding-top:4px}
 /* Embedded forms (donors.2labs.ca). The frames are cross-origin and send no resize
-   message, so nothing here can derive their height — it has to be measured per form.
+   message, so nothing here can derive their height — it has to be measured per form,
+   and re-measured whenever a form changes. Both embeds ship height=720 in their markup;
+   these rules override it to what the forms actually need.
 
-     donate  /app/f/f_f4f2…  donation form   658px at 624 wide, 711px at 323 and 268
+     donate  /app/f/f_f4f2…  donation form   863px at 624 and 450 wide, 902px at 400,
+                                             935px at 323, 974px at 268
      service /app/f/f_37b3…  manage-giving   384px at 416 wide, 419px at 323, 467px at 268
 
-   The donate embed's own height=720 clears its form, so it needs no override. The
-   Family Services embed also ships height=720 but its form is roughly half that, so it
-   is sized down here — otherwise the frame trails ~300px of blank page under the form.
-   If a form grows past the height set for it, it scrolls inside its frame and clips the
-   submit button, so re-measure whenever an embed changes. The durable fix is for
-   donors.2labs.ca to post its height to the parent (postMessage) so frames can
-   auto-size. Scrolling stays enabled as a safety valve. */
+   The donation form outgrew 720 when a mailing-address section was added to it, which
+   made it scroll inside its frame and clip the Donate button. If a form grows past the
+   height set for it that will happen again, so re-measure on any change. The durable fix
+   is for donors.2labs.ca to post its height to the parent (postMessage) so frames can
+   auto-size. Scrolling stays enabled as a safety valve so validation messages are never
+   trapped out of reach. */
 .two-col iframe{display:block}
+[data-page="give"] .two-col iframe{height:900px}
+@media (max-width:480px){[data-page="give"] .two-col iframe{height:1000px}}
 [data-page="service"] .two-col iframe{height:440px}
 @media (max-width:880px){[data-page="service"] .two-col iframe{height:480px}}
 
